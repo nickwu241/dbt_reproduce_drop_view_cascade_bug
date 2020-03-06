@@ -1,0 +1,11 @@
+dbt_reproduce_drop_view_cascade_bug:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: 127.0.0.1
+      user: postgres
+      pass: yikes
+      port: 5432
+      dbname: postgres
+      schema: public

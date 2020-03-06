@@ -1,0 +1,20 @@
+name: 'dbt_reproduce_drop_view_cascade_bug'
+version: '1.0.0'
+
+profile: 'dbt_reproduce_drop_view_cascade_bug'
+
+source-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+    - "target"
+    - "dbt_modules"
+
+on-run-start: "CREATE TABLE IF NOT EXISTS public.table_1 (id int);"
+models:
+  materialized: view
+  post-hook: "SELECT pg_sleep(10);"
